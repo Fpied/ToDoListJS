@@ -1,5 +1,6 @@
 const ajouter = document.getElementById("ajouter");
 const liste = document.getElementById("liste");
+const button = document.getElementById("button");
 
 const text = document.getElementById("tache");
 let fait = false;
@@ -8,8 +9,6 @@ let ToDoList = []; // Initialise le tableau
 let newListe = localStorage.getItem('ToDoListMa');
 let newTableauParse = newListe ? JSON.parse(newListe) : [];
 let id = newTableauParse.length;
-let label = document.createElement("label");
-let checkbox = document.createElement("input");
 let labelBoxSupprime = document.createElement("label");
 let checkBoxSupprime = document.createElement("input");
 const filterToutes = document.createElement("button");
@@ -17,10 +16,12 @@ const filterAFaire = document.createElement("button");
 const filterFaite = document.createElement("button");
 
 filterToutes.textContent = "Toutes";
-filterFaite.textContent = "À faire";
+filterAFaire.textContent = "À faire";
 filterFaite.textContent = "Faites";
 
-
+button.appendChild(filterToutes);
+button.appendChild(filterAFaire);
+button.appendChild(filterFaite);
 
 
 afficherTache = (tache)=>
@@ -30,9 +31,9 @@ afficherTache = (tache)=>
     span.textContent = tache.texte;
     li.appendChild(span);
     liste.appendChild(li);
-    checkbox = document.createElement("input");
+    let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    label = document.createElement("label");
+    let label = document.createElement("label");
     label.textContent = "faite";
     label.prepend(checkbox);
     li.appendChild(label);
@@ -110,5 +111,42 @@ ajouter.addEventListener("click", (event)=>
     afficherTache(nouvelleTache);
 
 });
+
+filterToutes.addEventListener("click", ()=>{
+    liste.innerHTML = "";
+    for(let index = 0; index < newTableauParse.length; index++)
+            {
+                afficherTache(newTableauParse[index]);
+            }
+
+})
+
+filterFaite.addEventListener("click", ()=>{
+    liste.innerHTML = "";
+    for(let index = 0; index < newTableauParse.length; index++)
+            {
+                if(newTableauParse[index].fait === true);
+                {
+                    afficherTache(newTableauParse[index]);
+                    
+                } 
+            }
+
+})
+
+filterFaite.addEventListener("click", () => {
+    liste.innerHTML = "";
+    for(let index = 0; index < newTableauParse.length; index++)
+            {
+                if(newTableauParse[index].fait === false);
+                {
+                    afficherTache(newTableauParse[index]);
+                    
+                } 
+            }
+
+});
+
+
 
 
