@@ -3,7 +3,7 @@ const liste = document.getElementById("liste");
 const button = document.getElementById("button");
 
 const text = document.getElementById("tache");
-let fait = false;
+let fait = null;
 let ToDoList = []; // Initialise le tableau
 
 let newListe = localStorage.getItem('ToDoListMa');
@@ -41,6 +41,14 @@ afficherTache = (tache)=>
     buttonSupprime.type = "button";
     buttonSupprime.textContent = "Supprimé";
     li.appendChild(buttonSupprime);
+    if(tache.fait){
+        span.style.color = "green";
+    }
+    else if(tache.fait === false){
+        span.style.color = "red";
+    } else{
+        span.style.color = "black";
+    }
     
     checkbox.addEventListener("change", ()=>
     {
@@ -51,11 +59,13 @@ afficherTache = (tache)=>
             console.log(tache);
             
         } 
-        else 
+        else if(checkbox.checked === false)
         {
             span.style.color = "red";
             tache.fait = false;
             console.log(tache);
+        } else{
+            span.style.color = "black";
         }
     });
     
@@ -100,7 +110,7 @@ ajouter.addEventListener("click", (event)=>
     const nouvelleTache = {
         id: id++,
         texte: texteValue,
-        fait: false
+        fait: null
     };
     newTableauParse.push(nouvelleTache);
     localStorage.setItem("ToDoListMa", JSON.stringify(newTableauParse));
@@ -121,11 +131,11 @@ filterToutes.addEventListener("click", ()=>{
 
 })
 
-filterFaite.addEventListener("click", ()=>{
+filterAFaire.addEventListener("click", ()=>{
     liste.innerHTML = "";
     for(let index = 0; index < newTableauParse.length; index++)
             {
-                if(newTableauParse[index].fait === true);
+                if(newTableauParse[index].fait === true)
                 {
                     afficherTache(newTableauParse[index]);
                     
@@ -138,7 +148,7 @@ filterFaite.addEventListener("click", () => {
     liste.innerHTML = "";
     for(let index = 0; index < newTableauParse.length; index++)
             {
-                if(newTableauParse[index].fait === false);
+                if(newTableauParse[index].fait === false)
                 {
                     afficherTache(newTableauParse[index]);
                     
