@@ -158,5 +158,24 @@ filterFaite.addEventListener("click", () => {
 });
 
 
+if(document.cookie.includes("rgpd_consent")){
+    document.getElementById('cookie-banner').style.display = "none";
+
+} else{
+    document.getElementById('cookie-banner').style.display = 'block';
+
+}
+
+
+function accepterCookies() {
+    const dateDuJour = new Date();
+    dateDuJour.setDate(dateDuJour.getDate() + 30);
+    document.cookie = `rgpd_consent=true;expires=${dateDuJour.toUTCString()};path=/`;
+    document.getElementById('cookie-banner').style.display ='none';
+  
+  
+}
+
+
 
 
