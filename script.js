@@ -28,7 +28,7 @@ afficherTache = (tache)=>
 {
     let li = document.createElement("li");
     let span = document.createElement("span");
-    span.textContent = tache.texte;
+    span.textContent = tache.id + "-"+ tache.texte;
     li.appendChild(span);
     liste.appendChild(li);
     let checkbox = document.createElement("input");
