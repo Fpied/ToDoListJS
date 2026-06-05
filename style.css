@@ -1,12 +1,35 @@
 *{
     text-align: center;
     font-size: 16px;
+    box-sizing: border-box;
+}
+body{
+    background-image: url("fleuretpaillette.png");
+    background-size: cover;
+    margin: 0;
+}
+h1{
+    background-color: blue;
+    color: yellow;
+    padding: 10px;
+    width: 200px;
+    margin: 0 auto;
+    border: 5px solid black;
+    border-radius: 20px;
 }
 form{
     display: block;
+    margin-top: 20px;
 }
 #tache__Label{
     display: block;
+    background-color: blue;
+    padding: 10px;
+    color: yellow;
+    width: 200px;
+    margin: 0 auto;
+    border: 5px solid black;
+    border-radius: 20px;
 }
 textarea{
     display: block;
@@ -20,6 +43,10 @@ button{
 ul{
     text-decoration: none;
     list-style: none;
+    background-color: #FFFFFF;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 10px;
 }
 button{
     min-height: 44px;
@@ -48,7 +75,12 @@ button{
 @media(min-width: 600px){
     textarea{
         height: 200px;
+
     }
+    ul{
+        max-width: 600px;
+    }
+
 
 }
 @media(min-width: 1025px){
